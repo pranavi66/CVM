@@ -1,4 +1,4 @@
-let x = 3
+let x = 2
 if x > 5 {
   print x
 } else {
