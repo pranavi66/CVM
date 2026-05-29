@@ -1,0 +1,18 @@
+price AAPL = 150
+price MSFT = 320
+price GOOGL = 140
+
+if AAPL < 160 {
+    buy AAPL 10
+}
+
+if MSFT > 300 {
+    sell MSFT 5
+}
+
+if GOOGL < 150 {
+    buy GOOGL 8
+}
+
+show portfolio
+show cash

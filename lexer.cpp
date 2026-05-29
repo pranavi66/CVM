@@ -9,12 +9,8 @@ using namespace std;
 
 // Reserved keywords
 static const vector<string> KEYWORDS = { // List of keywords in the language
-    "let",
-    "print",
-    "input",
-    "if",
-    "else",
-    "while","true", "false"
+   "let", "print", "input", "if", "else", "while", "true", "false",
+    "price", "buy", "sell", "show"   // trading DSL keywords
 };
 
 // Check whether identifier is a keyword

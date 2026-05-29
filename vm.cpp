@@ -7,7 +7,9 @@ void VM::run(const vector<Instruction>& code) {
     vector<int>    stack;      // operand stack
     map<string,int> vars;      // variable store
     int ip = 0;                // instruction pointer
-
+ // trading DSL defaults — safe for regular CVM++ scripts too
+    vars["cash"]      = 10000;
+    vars["portfolio"] = 0;
     while (ip < (int)code.size()) {
         const Instruction& ins = code[ip];
 
