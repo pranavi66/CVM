@@ -4,7 +4,7 @@
 #include <memory>
 using namespace std;
 
-struct ASTNode {
+struct ASTNode {// Base class for all AST nodes
     virtual ~ASTNode() = default;
 };
 using NodePtr = unique_ptr<ASTNode>;

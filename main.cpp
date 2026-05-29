@@ -12,7 +12,7 @@ string readFile(const string& path) {
     if (!f) throw runtime_error("Cannot open file: " + path);
     return string(istreambuf_iterator<char>(f), {});
 }
-
+// This function runs the entire pipeline: tokenize, parse, compile, and execute
 void runSource(const string& src, bool debugBC = false) {
     auto tokens = tokenize(src);
     auto ast    = parse(tokens);
@@ -46,7 +46,7 @@ void runSource(const string& src, bool debugBC = false) {
         cout << "=== Output ===" << endl;
     }
 
-    VM vm;
+    VM vm;// Create a VM instance and run the compiled bytecode
     vm.run(bc);
 }
 

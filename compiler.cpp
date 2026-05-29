@@ -1,11 +1,11 @@
 #include "compiler.h"
-#include <stdexcept>
+#include <stdexcept>// For runtime_error
 using namespace std;
 
 struct Compiler {
     vector<Instruction> code;
 
-    // ── helpers ──────────────────────────────────────────────
+    //  helpers to emit instructions and manage jump targets
     int emit(OpCode op, int arg = 0, const string& sarg = "") {
         code.push_back({op, arg, sarg});
         return (int)code.size() - 1;   // returns index of emitted instruction
@@ -17,7 +17,7 @@ struct Compiler {
         code[idx].arg = target;         // backpatch a jump target
     }
 
-    // ── expressions ──────────────────────────────────────────
+    //expressions 
     void compileExpr(ASTNode* node) {
         if (auto* n = dynamic_cast<NumberNode*>(node)) {
             emit(OpCode::PUSH, n->value);
@@ -52,7 +52,7 @@ struct Compiler {
         throw runtime_error("Unknown AST node in expression");
     }
 
-    // ── statements ───────────────────────────────────────────
+    //statements 
     void compileStmt(ASTNode* node) {
         if (auto* n = dynamic_cast<AssignNode*>(node)) {
             compileExpr(n->value.get());
@@ -99,7 +99,7 @@ struct Compiler {
         throw runtime_error("Unknown AST node in statement");
     }
 
-    // ── entry point ──────────────────────────────────────────
+    // entry point for compilation
     vector<Instruction> run(const ProgramNode& prog) {
         for (auto& s : prog.statements) compileStmt(s.get());
         emit(OpCode::HALT);
@@ -107,6 +107,7 @@ struct Compiler {
     }
 };
 
+// this is the function declared in compiler.h that will be called from main.cpp
 vector<Instruction> compile(const ProgramNode& program) {
     Compiler c;
     return c.run(program);

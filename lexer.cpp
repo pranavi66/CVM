@@ -1,14 +1,14 @@
-#include "lexer.h"
+#include "lexer.h"  
 
 #include <vector>
 #include <string>
-#include <stdexcept>
-#include <cctype>
+#include <stdexcept> // For runtime_error
+#include <cctype> // For isdigit, isalpha, isalnum
 
-using namespace std;
+using namespace std; 
 
 // Reserved keywords
-static const vector<string> KEYWORDS = {
+static const vector<string> KEYWORDS = { // List of keywords in the language
     "let",
     "print",
     "input",
@@ -18,7 +18,7 @@ static const vector<string> KEYWORDS = {
 };
 
 // Check whether identifier is a keyword
-static bool isKeyword(const string& s) {
+static bool isKeyword(const string& s) { // Function to check if a string is a keyword
     for (auto& k : KEYWORDS) {
         if (k == s)
             return true;
@@ -28,7 +28,7 @@ static bool isKeyword(const string& s) {
 }
 
 // Main tokenizer
-vector<Token> tokenize(const string& src) {
+vector<Token> tokenize(const string& src) { // Function to tokenize the input source code
     vector<Token> tokens;
 
     size_t i = 0;
@@ -38,7 +38,8 @@ vector<Token> tokenize(const string& src) {
         char c = src[i];
 
         // Ignore whitespace
-        if (c == ' ' || c == '\t' || c == '\n' || c == '\r') {
+        if (c == ' ' || c == '\t' || c == '\n' || c == '\r') { 
+            //we can also use isspace(c) instead of checking for each whitespace character
             i++;
             continue;
         }
@@ -58,6 +59,7 @@ vector<Token> tokenize(const string& src) {
         }
 
         // Identifiers / Keywords
+        // An identifier starts with a letter or underscore, followed by letters, digits, or underscores
         if (isalpha(c) || c == '_') {
 
             string id;
@@ -70,6 +72,7 @@ vector<Token> tokenize(const string& src) {
             }
 
             TokenType type;
+            
 
             if (isKeyword(id))
                 type = TokenType::KEYWORD;
