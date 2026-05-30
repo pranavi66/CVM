@@ -181,7 +181,7 @@ It maintains three pieces of state:
 | `JMP_IF_FALSE n` | Pop stack — if 0 (false), jump to `n` |
 | `HALT` | Stop execution |
 
----
+
 
 ## Testing Individual Stages
 
