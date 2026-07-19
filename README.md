@@ -367,9 +367,3 @@ g++ -std=c++17 -o test_vm test_vm.cpp lexer.cpp parser.cpp compiler.cpp vm.cpp
 ```
 
 ---
-
-## References
-
-- *Crafting Interpreters* — Robert Nystrom (architecture reference)
-- "Writing a Lexer in C++"
-- "Understanding Stack-Based Virtual Machines"
